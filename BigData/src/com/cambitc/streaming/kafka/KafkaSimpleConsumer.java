@@ -15,8 +15,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KafkaConsumer {
+/**
+ * 
+ * @author SumanKu
+ * SimpleConsumer implementation provides greater control over partition consumption than Consumer Groups
+ * Read a message multiple times
+ * Consume only a subset of the partitions in a topic in a process
+ * Manage transactions to make sure a message is processed once and only once
+ * 
+ * Downsides of using SimpleConsumer
+ * 
+ * The SimpleConsumer does require a significant amount of work not needed in the Consumer Groups:
+ * You must keep track of the offsets in your application to know where you left off consuming.
+ * You must figure out which Broker is the lead Broker for a topic and partition
+ * You must handle Broker leader changes
+ */
+public class KafkaSimpleConsumer {
 
+	
 	public static void main(String args[]) {
 
 		if (args.length < 2) {
@@ -25,7 +41,7 @@ public class KafkaConsumer {
 					"  <partitions> is a list of one or more Kafka brokers\n" +
 					"  <seed> is a list of one or more Kafka brokers\n" +
 					"  <port> is a list of one or more Kafka brokers\n" +
-					"com.cambitc.streaming.kafka.KafkaConsumer OBDTopics 1 1 9092 "
+					"com.cambitc.streaming.kafka.KafkaConsumer OBDTopics 0 localhost  9092 "
 					);
 			System.exit(1);
 			
@@ -34,7 +50,7 @@ public class KafkaConsumer {
 			 * kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic OBDTopics
 			 */
 		}
-		KafkaConsumer consumer = new KafkaConsumer();
+		KafkaSimpleConsumer consumer = new KafkaSimpleConsumer();
 
 		String topic = args[0];
 		int partition = Integer.parseInt(args[1]);
@@ -51,7 +67,7 @@ public class KafkaConsumer {
 
 	private List<String> m_replicaBrokers = new ArrayList<String>();
 
-	public KafkaConsumer() {
+	public KafkaSimpleConsumer() {
 		m_replicaBrokers = new ArrayList<String>();
 	}
 
@@ -69,7 +85,21 @@ public class KafkaConsumer {
 		}
 		String leadBroker = metadata.leader().host();
 		String clientName = "Client_" + a_topic + "_" + a_partition;
-
+		
+		/*
+		 * SimpleConsumer implementation provides greater control over partition consumption than Consumer Groups
+		 * Read a message multiple times
+		 * Consume only a subset of the partitions in a topic in a process
+		 * Manage transactions to make sure a message is processed once and only once
+		 * 
+		 * Downsides of using SimpleConsumer
+		 * 
+		 * The SimpleConsumer does require a significant amount of work not needed in the Consumer Groups:
+		 * You must keep track of the offsets in your application to know where you left off consuming.
+		 * You must figure out which Broker is the lead Broker for a topic and partition
+		 * You must handle Broker leader changes
+		 */
+		
 		SimpleConsumer consumer = new SimpleConsumer(leadBroker, a_port, 100000, 64 * 1024, clientName);
 		long readOffset = getLastOffset(consumer,a_topic, a_partition, kafka.api.OffsetRequest.EarliestTime(), clientName);
 

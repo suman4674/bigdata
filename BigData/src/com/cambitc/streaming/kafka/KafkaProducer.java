@@ -7,7 +7,13 @@ import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
-public class MyProducer {
+
+/**
+ * 
+ * @author SumanKu
+ *
+ */
+public class KafkaProducer {
 	public static void main(String[] args) {
 
 		Random rnd = new Random();
@@ -15,7 +21,7 @@ public class MyProducer {
 		Properties props = new Properties();
 		props.put("metadata.broker.list", "localhost:9092");
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
-		props.put("partitioner.class", "com.cambitc.spark.streaming.MyPartitioner");
+		props.put("partitioner.class", "com.cambitc.streaming.kafka.KafkaPartitioner");
 		props.put("request.required.acks", "1");
 
 		ProducerConfig config = new ProducerConfig(props);
@@ -25,9 +31,9 @@ public class MyProducer {
 		try{
 			while(true) { 
 				long runtime = new Date().getTime();  
-				String ipAdress="192.168.5.1";
+				String ipAdress="localhost";
 				String msg =""+rnd.nextInt(10);
-				KeyedMessage<String, String> data = new KeyedMessage<String, String>("myTopic",ipAdress , msg);
+				KeyedMessage<String, String> data = new KeyedMessage<String, String>("OBDTopics",ipAdress , msg);
 				producer.send(data);
 				Thread.sleep(1000);
 			}
