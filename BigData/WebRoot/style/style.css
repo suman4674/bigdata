@@ -1,0 +1,203 @@
+/* 
+	Author : Ashok
+	Website : http://responsivewebinc.com
+	********************************************
+	For Paid Support - Contact me.
+	********************************************
+*/
+
+body{
+padding-top:35px;
+line-height:20px;
+}
+
+img{
+max-width:97%;
+padding:5px;
+margin:5px;
+border:1px solid #eee;
+}
+
+li{
+line-height:22px;
+}
+
+h3{
+padding-bottom:4px;
+}
+
+a{
+color:#c80000;
+text-decoration:underline;
+}
+
+a:hover{
+color:#c80000;
+text-decoration:none;
+}
+
+
+.red{
+color:#c80000;
+}
+
+.navbar a{
+text-transform:uppercase;
+font-weight:bold;
+}
+
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
+background-color: #c80000;
+}
+
+.navbar .nav > li > a {
+padding: 9px 20px 11px;
+line-height: 20px;
+margin-right:1px;
+color:#fff;
+}
+
+.navbar .nav > li > a:hover{
+background-color: #c80000;
+}
+
+.content{
+background:#fafafa;
+}
+
+nav{
+padding:10px 10px;
+padding-bottom:0px;
+}
+
+nav .nav-pills > li > a {
+  color:#fff;
+  margin-right:10px;
+  text-transform:uppercase;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration:none;
+  background:#c80000;
+}
+
+nav .nav-pills > li > a:hover{
+background-color:#b90000;
+}
+
+nav .nav-pills > .active > a,
+nav .nav-pills > .active > a:hover {
+  color: #ffffff;
+  background-color: #c80000;
+}
+
+nav .nav-pills > .active > a:hover{
+background:#b90000;
+}
+
+header{
+padding:0px;
+height:140px;
+background:url("../img/header.jpg");
+border-bottom:1px solid #888;
+}
+
+header h1{
+font-size:40px;
+padding:5px;
+padding-top:30px;
+}
+
+header h1 a{
+color:#000;
+text-decoration:none;
+}
+
+header h1 a:hover{
+text-decoration:none;
+color:#000;
+}
+
+header p{
+font-size:14px;
+text-transform:uppercase;
+font-weight:bold;
+color:#666;
+padding:8px 5px;
+letter-spacing:2px;
+}
+
+.row{
+padding:8px;
+}
+
+.padd{
+padding:5px;
+}
+
+.main{
+padding:0px;
+background:#fff;
+border:1px solid #eee;
+}
+
+.main a img{
+margin:5px 0px;
+}
+
+.main h2 a{
+text-decoration:none;
+font-weight:normal;
+}
+
+
+.meta{
+text-transform:uppercase;
+font-size:11px;
+letter-spacing:2px;
+padding:5px 0px;
+}
+
+.meta a{
+border-bottom:1px dotted #333;
+color:#333;
+text-decoration:none;
+}
+
+.meta a:hover{
+text-decoration:none;
+border:0;
+}
+
+.sidebar{
+padding:0px;
+margin:0px;
+border-left:1px solid #fafafa;
+}
+
+.sidebar h3{
+background:#c80000;
+padding:3px 8px;
+margin:10px 0px;
+color:#fff;
+font-weight:normal;
+}
+
+footer{
+background:#a80000;
+text-align:center;
+color:#fff;
+padding:10px 5px;
+font-size:11px;
+}
+
+footer a{
+color:#fff;
+}
+
+footer a:hover{
+color:#fff;
+}
+
+.attr{
+color:#fff;
+}
