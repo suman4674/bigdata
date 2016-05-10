@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>D3: Drawing divs, spaced out</title>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8" type="text/javascript"></script>
+
+<style type="text/css">
+div.bar {
+	display: inline-block;
+	width: 20px;
+	height: 75px; 
+	margin: 5px;
+	background-color: teal;
+}
+.pumpkin { fill: yellow; stroke: orange; stroke-width: 5; }
+
+</style>
+</head>
+<body>
+
+<h1>Linear Predictions</h1>
+
+<section id="graph"></section>
+
+<!-- load the d3.js library -->	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+ 
+<script>
+ 
+// Set the dimensions of the canvas / graph
+var	margin = {top: 30, right: 20, bottom: 30, left: 50},
+	width = 600 - margin.left - margin.right,
+	height = 270 - margin.top - margin.bottom;
+ 
+
+// Set the ranges
+var	x = d3.scale.linear().range([0, width]);
+var	y = d3.scale.linear().range([height, 0]);
+ 
+// Define the axes
+var	xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5);
+ 
+var	yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
+ 
+// Define the line
+var	valueline = d3.svg.line()
+	.x(function(d) { return x(d.actual); })
+	.y(function(d) { return y(d.predicted); });
+    
+// Adds the svg canvas
+var	svg = d3.select("body")
+	.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+ 
+// Get the data
+d3.csv("../data/OBDDeviceStream.csv", function(error, data) {
+	data.forEach(function(d) {
+		d.actual = d.actual,
+		d.predicted = d.predicted;
+	});
+ 
+	// Scale the range of the data
+	x.domain(d3.extent(data, function(d) { return d.actual; }));
+	y.domain([0, d3.max(data, function(d) { return d.predicted; })]);
+ 
+	// Add the valueline path.
+	svg.append("path")	
+		.attr("class", "line")
+		.attr("d", valueline(data));
+ 
+	// Add the X Axis
+	svg.append("g")		
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(xAxis);
+ 
+	// Add the Y Axis
+	svg.append("g")		
+		.attr("class", "y axis")
+		.call(yAxis);
+ 
+});
+ 
+</script>
+
+
+
+</body>
+</html>

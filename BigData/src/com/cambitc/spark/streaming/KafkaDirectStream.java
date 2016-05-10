@@ -35,7 +35,7 @@ import org.apache.spark.streaming.Durations;
 
 /**
  * Consumes messages from one or more topics in Kafka and does wordcount.
- * Usage: JavaDirectKafkaWordCount <brokers> <topics>
+ * Usage: JavaDirectKafkaWordCount <brokers> <topics>ß
  *   <brokers> is a list of one or more Kafka brokers
  *   <topics> is a list of one or more kafka topics to consume from
  *
@@ -43,14 +43,15 @@ import org.apache.spark.streaming.Durations;
  *    $ bin/run-example streaming.JavaDirectKafkaWordCount broker1-host:port,broker2-host:port topic1,topic2
  */
 
-public final class KafkaWindowWordCount {
+public final class KafkaDirectStream {
   private static final Pattern SPACE = Pattern.compile(" ");
 
   public static void main(String[] args) {
     if (args.length < 2) {
-      System.err.println("Usage: JavaDirectKafkaWordCount <brokers> <topics>\n" +
+      System.err.println("Usage: KafkaDirectStream <brokers> <topics>\n" +
           "  <brokers> is a list of one or more Kafka brokers\n" +
-          "  <topics> is a list of one or more kafka topics to consume from\n\n");
+          "  <topics> is a list of one or more kafka topics to consume from\n\n" +
+          " KafkaDirectStream localhost:9092 OBDTopics");
       System.exit(1);
     }
 

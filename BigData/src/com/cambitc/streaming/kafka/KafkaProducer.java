@@ -51,7 +51,7 @@ public class KafkaProducer {
 				String msg =""+rnd.nextInt(10);
 				KeyedMessage<String, String> data = new KeyedMessage<String, String>("OBDTopics",ipAdress , msg);
 				myProducer.producer.send(data);
-				myProducer.initFileConfig("/Users/skumar/Documents/personal/projects/repositries/BigData/data/insured.csv");
+				myProducer.initFileConfig("data/insured.csv");
 				myProducer.sendFileDataToKafka("OBDTopics");
 				Thread.sleep(1000);
 			}
