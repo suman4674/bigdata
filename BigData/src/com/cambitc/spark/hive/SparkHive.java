@@ -9,7 +9,7 @@ import org.apache.spark.sql.execution.QueryExecution;
 import org.apache.spark.sql.hive.HiveContext;
 
 
-public class Problem4 {
+public class SparkHive {
 
 
 	public static void main(String[] args) {

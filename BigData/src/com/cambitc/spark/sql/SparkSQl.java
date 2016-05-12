@@ -16,7 +16,7 @@ import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 
 
-public class Problem3 {
+public class SparkSQl {
 
 
 	public static void main(String[] args) {

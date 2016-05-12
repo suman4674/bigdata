@@ -3,7 +3,11 @@ package com.cambitc.zookeeper;
 import java.util.List;
 
 import org.apache.zookeeper.ZooKeeper;
-
+/**
+ * 
+ * @author skumar
+ *
+ */
 public class KafkaBrokerInfoFetcher {
 	
 	

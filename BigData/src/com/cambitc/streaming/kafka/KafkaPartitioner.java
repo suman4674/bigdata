@@ -1,7 +1,12 @@
 package com.cambitc.streaming.kafka;
 import kafka.producer.Partitioner;
 import kafka.utils.VerifiableProperties;
- 
+
+/**
+ * 
+ * @author skumar
+ *
+ */
 public class KafkaPartitioner implements Partitioner {
     public KafkaPartitioner (VerifiableProperties props) {
  

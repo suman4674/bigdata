@@ -1,7 +1,11 @@
 package com.cambitc.util.date;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author skumar
+ *
+ */
 public class Utils {
 
 	public static void main(String []args){

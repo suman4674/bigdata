@@ -50,7 +50,7 @@ public class KafkaProducer {
 				String ipAdress="localhost";
 				String msg =""+rnd.nextInt(10);
 				KeyedMessage<String, String> data = new KeyedMessage<String, String>("OBDTopics",ipAdress , msg);
-				myProducer.producer.send(data);
+//				myProducer.producer.send(data);
 				myProducer.initFileConfig("data/insured.csv");
 				myProducer.sendFileDataToKafka("OBDTopics");
 				Thread.sleep(1000);
