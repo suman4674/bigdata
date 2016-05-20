@@ -1,0 +1,445 @@
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+      <meta charset="utf-8">
+      <title>D3 test</title>
+      <style>
+
+  body {
+      font: 10px sans-serif;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  /** on hovering , bar will be filled with orange color.*/
+      rect:hover {
+          fill: orange;
+        }
+        
+        /**creating selector*/
+        #tooltip {
+          position: absolute;
+          /**white-space: nowrap;*/
+          width: 200px;
+          height: auto;
+          padding: 10px;
+          background-color: white;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+          -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+          -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+          pointer-events: none;
+        }
+        /**creating selector*/
+        #tooltip.hidden {
+          display: none;
+        }
+        /**creating selector*/
+        #tooltip p {
+          margin: 0;
+          font-family: sans-serif;
+          font-size: 16px;
+          line-height: 20px;
+        }
+
+  </style>
+      <!-- Including Javascript files d3.js (for d3) -->
+      <script type="text/javascript" src="d3lib/d3.js"></script>
+       
+      
+     
+
+      </head>
+      <body>
+      <div id="tooltip" class="hidden">
+        <p><strong>Vehicle Information</strong></p>
+        <p><span id="value">100</span></p>
+      </div>
+
+       <script>
+      //Setting values for margin, width, height  variables. 
+  var margin = {top: 20, right: 20, bottom: 170, left: 80},
+      width = 1400 - margin.left - margin.right ,
+      height = 700 - margin.top - margin.bottom;
+
+
+  //setting scale for x axis.
+  var x = d3.scale.ordinal().rangeRoundBands([0, width-190], .05);
+
+  //setting scale for y axis.
+  var y = d3.scale.linear().range([height, 0]);
+
+  //Creating x axis and orienting it at bottom. 
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+
+  //Creating y axis and orienting it at left. 
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+
+  //creating svg variable and setting values for its attributes. 
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  //appending year text to svg and setting its attributes.
+  svg.append("text")
+          .attr("x", (width / 2))             
+          .attr("y", 80 - (margin.top/80))
+          .attr("text-anchor", "middle")  
+          .style("font-size", "120px") 
+          .style("text-decoration", "underline")  
+          .attr("class", "shadow")  
+          .style("fill","DarkSalmon")
+          .text("2013");
+
+
+  //Loading data from "2012.csv". First argument is path to data file. 2nd argument is callback function and data is loaded in variable d. 
+    //The fastest way to turn a string into a number in JavaScript is to stick a + in front of it. 
+  d3.csv("2013.csv", function(d) {
+  		return {
+  		mfyear : +d.mfyear,
+  		carLineClassCode : +d.carLineClassCode,
+  		carLineClassDesc : d.carLineClassDesc,
+  		mfrName : d.mfrName,
+  		carline : d.carline,
+  		fuelCost : +d.fuelCost
+  		
+
+  		};
+  			}, function(data) {
+
+  //setting domain of x axis according to carline variable value.
+    x.domain(data.map(function(d) { return d.carline; }));
+
+  //setting domain of y axis according to fuel cost variable value.
+    y.domain([0, d3.max(data, function(d) { return d.fuelCost; })]);
+
+    //setting attrbutes for values on x axis , rotating them to 45 degree and appending to svg.
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", "-.55em")
+        .attr("transform", "rotate(-45)" )
+        .style("font-size", "10px");
+
+    //appending title of x axis to svg and setting its attribute values.
+    svg.append("text").attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom-30) + ")")
+              .style("text-anchor", "middle")
+              .style("fill","blue")
+              .style("font-size", "25px")
+              .text("Car Model Names Group By Type of Class")
+              .style("font-weight", "bold");
+        
+  //appending title of y axis to svg and setting its attribute values.
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - 70)
+        .attr("x",0 - (height / 2))
+        .attr("dy", ".71em")
+        .style("text-anchor", "middle")
+        .style("font-size", "25px")
+        .style("font-weight", "bold")
+        .text("Annual Fuel Cost ($)")
+        .style("fill","blue");
+
+  //creating bar with data in present iteration
+       svg.selectAll("bar")
+  			   .data(data)
+  			   .enter()
+  			   .append("rect").attr("x", function(d) {
+  			   	   
+  			   		return x(d.carline);
+  			   })
+  			   .attr("y", function(d) {
+  			   	   
+  			   		return y(d.fuelCost);
+  			   })
+  			   .attr("width",x.rangeBand())
+  			   .attr("height", function(d) {
+  			   		return height - y(d.fuelCost);
+  			   })
+  			   .attr("fill", function(d) {
+            // fill bar with color according to class type of vehicle.
+            if(d.carLineClassCode==1){
+                return "#e6e600";
+            }
+
+            else if (d.carLineClassCode==2) {
+              return "#FF0000";
+            }
+            else if (d.carLineClassCode==3) {
+              return "#F0A804";
+            }
+            else if (d.carLineClassCode==4) {
+              return "#808080";
+            }
+            else if (d.carLineClassCode==5) {
+              return "#008000";
+            }
+            else if (d.carLineClassCode==6) {
+              return "#0000FF";
+            }
+            else if (d.carLineClassCode==7) {
+              return "#800080";
+            }
+            else if (d.carLineClassCode==8) {
+              return "#6B8E23";
+            }
+            else if (d.carLineClassCode==9) {
+              return "#2E8B57";
+            }
+            else if (d.carLineClassCode==10) {
+              return "#008B8B";
+            }
+            else if (d.carLineClassCode==11) {
+              return "#C71585";
+            }
+            else if (d.carLineClassCode==12) {
+              return "#8B4513";
+            }
+            else if (d.carLineClassCode==13) {
+              return "#D2691E";
+            }
+            else if (d.carLineClassCode==14) {
+              return "#BC8F8F";
+            }
+            else if (d.carLineClassCode==15) {
+              return "#DC143C";
+            }
+            else if (d.carLineClassCode==16) {
+              return "#ff6e32";
+            }
+            else if (d.carLineClassCode==17) {
+              return "#9f6060";
+            }
+            else if (d.carLineClassCode==18) {
+              return "#BDB76B";
+            }
+            else if (d.carLineClassCode==19) {
+              return "#4d3900";
+            }
+            else if (d.carLineClassCode==20) {
+              return "#df9fbf";
+            }
+            else if (d.carLineClassCode==21) {
+              return "#cccc66";
+            }
+            else if (d.carLineClassCode==22) {
+              return "#80ffaa";
+            }
+            else if (d.carLineClassCode==23) {
+              return "#D35400";
+            }
+            else if (d.carLineClassCode==24) {
+              return "#D6EAF8";
+            }
+            else if (d.carLineClassCode==25) {
+              return "#F1948A";
+            }
+            else if (d.carLineClassCode==26) {
+              return "#1F618D";
+            }
+            else if (d.carLineClassCode==27) {
+              return "#48C9B0";
+            }
+            else if (d.carLineClassCode==28) {
+              return "#F9E79F";
+            }
+            else if (d.carLineClassCode==29) {
+              return "#A0522D";
+            }
+            else if (d.carLineClassCode==30) {
+              return "#00BFFF";
+            }
+            else if (d.carLineClassCode==31) {
+              return "#6495ED";
+            }
+            else if (d.carLineClassCode==32) {
+              return "#DEB887";
+            }
+            else if (d.carLineClassCode==33) {
+              return "#B0E0E6";
+            }
+  			   }).on("mouseover",function (d) {   
+      // code in mouseover event handler is executed when user hovers that bar. This code is creating tool tip 
+     // and displays Manufacturer Name,Model Name,Class Type for that bar (vehicle).
+  //Get this bar's x/y values, then augment for the tooltip
+            var xPosition = parseFloat(d3.select(this).attr("x")) + x.rangeBand() / 2;
+            var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+
+            //Update the tooltip position and value
+            d3.select("#tooltip")
+              .style("left", xPosition + "px")
+              .style("top", yPosition + "px")
+              .select("#value")
+              .html("<strong>Manufacturer Name:</strong> "+d.mfrName+"<br><strong>Model Name:</strong> "+d.carline+"<br><strong>Class Type:</strong> "+d.carLineClassDesc);
+              
+
+           
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+
+
+  		   }).on('mouseout',function(d){ //code in mouseout event handler is executed when user moves out from that d3 segment bar. 
+             //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+
+  		    }
+
+
+
+  		    );
+   
+
+  //dynamically creating legends according to carlineclass code variable values in csv data source (type of class of vehicle).
+   var legend = svg.selectAll(".legend")
+        .data(d3.map(data, function(d){return d.carLineClassCode;}).values())
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(10," + i * 20 + ")"; });
+    
+    legend.append("rect")
+        .attr("x", width-5)
+        .attr("width", 15)
+        .attr("height", 15)
+        .style("fill",function(d) {
+            
+            //fill color of legend rectangle according to class type of vehicle.
+            if(d.carLineClassCode==1){
+                return "#e6e600";
+            }
+
+            else if (d.carLineClassCode==2) {
+              return "#FF0000";
+            }
+            else if (d.carLineClassCode==3) {
+              return "#F0A804";
+            }
+            else if (d.carLineClassCode==4) {
+              return "#808080";
+            }
+            else if (d.carLineClassCode==5) {
+              return "#008000";
+            }
+            else if (d.carLineClassCode==6) {
+              return "#0000FF";
+            }
+            else if (d.carLineClassCode==7) {
+              return "#800080";
+            }
+            else if (d.carLineClassCode==8) {
+              return "#6B8E23";
+            }
+            else if (d.carLineClassCode==9) {
+              return "#2E8B57";
+            }
+            else if (d.carLineClassCode==10) {
+              return "#008B8B";
+            }
+            else if (d.carLineClassCode==11) {
+              return "#C71585";
+            }
+            else if (d.carLineClassCode==12) {
+              return "#8B4513";
+            }
+            else if (d.carLineClassCode==13) {
+              return "#D2691E";
+            }
+            else if (d.carLineClassCode==14) {
+              return "#BC8F8F";
+            }
+            else if (d.carLineClassCode==15) {
+              return "#DC143C";
+            }
+            else if (d.carLineClassCode==16) {
+              return "#ff6e32";
+            }
+            else if (d.carLineClassCode==17) {
+              return "#9f6060";
+            }
+            else if (d.carLineClassCode==18) {
+              return "#BDB76B";
+            }
+            else if (d.carLineClassCode==19) {
+              return "#4d3900";
+            }
+            else if (d.carLineClassCode==20) {
+              return "#df9fbf";
+            }
+            else if (d.carLineClassCode==21) {
+              return "#cccc66";
+            }
+            else if (d.carLineClassCode==22) {
+              return "#80ffaa";
+            }
+            else if (d.carLineClassCode==23) {
+              return "#D35400";
+            }
+            else if (d.carLineClassCode==24) {
+              return "#D6EAF8";
+            }
+            else if (d.carLineClassCode==25) {
+              return "#F1948A";
+            }
+            else if (d.carLineClassCode==26) {
+              return "#1F618D";
+            }
+            else if (d.carLineClassCode==27) {
+              return "#48C9B0";
+            }
+            else if (d.carLineClassCode==28) {
+              return "#F9E79F";
+            }
+            else if (d.carLineClassCode==29) {
+              return "#A0522D";
+            }
+            else if (d.carLineClassCode==30) {
+              return "#00BFFF";
+            }
+            else if (d.carLineClassCode==31) {
+              return "#6495ED";
+            }
+            else if (d.carLineClassCode==32) {
+              return "#DEB887";
+            }
+            else if (d.carLineClassCode==33) {
+              return "#B0E0E6";
+            }
+           });
+
+        //putting text for each legend (class descriptipon) for each type class type of vehicle.
+        legend.append("text")
+        .attr("x", width-7)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { return d.carLineClassDesc; });
+
+
+  });
+  </script>
+  </body>
+       </html>

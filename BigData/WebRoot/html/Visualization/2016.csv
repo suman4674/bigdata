@@ -1,0 +1,43 @@
+mfyear,carLineClassCode,carLineClassDesc,mfrName,carline,fuelCost
+2016,13,Standard Pick-up Trucks 4WD,Ford Motor Company,F150 4WD,2100
+2016,13,Standard Pick-up Trucks 4WD,FCA US LLC,1500 4X4,2300
+2016,19,Special Purpose Vehicle cab chassis,General Motors,K15 SILVERADO 4WD CAB CHASSIS,2200
+2016,19,Special Purpose Vehicle cab chassis,General Motors,K15 SIERRA 4WD CAB CHASSIS,2500
+2016,15,Vans Passenger Type,General Motors,G3500 EXPRESS 2WD PASS MDPV,2400
+2016,15,Vans Passenger Type,Ford Motor Company,Transit T150 Wagon,2700
+2016,4,Compact Cars,Toyota,PRIUS c,900
+2016,4,Compact Cars,Toyota,CT 200h,1050
+2016,21,Special Purpose Vehicle minivan 4WD,Toyota,SIENNA AWD,2350
+2016,11,Small Pick-up Trucks 4WD,General Motors,COLORADO 4WD,1900
+2016,11,Small Pick-up Trucks 4WD,General Motors,CANYON 4WD,2100
+2016,30,Small SUV 2WD,Toyota,NX 300h,1350
+2016,30,Small SUV 2WD,Honda,HR-V 2WD,1450
+2016,32,Standard SUV 2WD,Nissan,QX60 Hybrid FWD,1750
+2016,32,Standard SUV 2WD,FCA US LLC,Grand Cherokee 4X2,2000
+2016,33,Standard SUV 4WD,Porsche,Cayenne Turbo S,1400
+2016,33,Standard SUV 4WD,Toyota,HIGHLANDER HYBRID AWD,1500
+2016,1,Two Seaters,Honda,CR-Z,1200
+2016,1,Two Seaters,Honda,CR-Z,1300
+2016,6,Large Cars,Ford Motor Company,C-MAX Hybrid FWD,1100
+2016,6,Large Cars,Hyundai,Sonata,1400
+2016,17,Special Purpose Vehicle 2WD,Ford Motor Company,Transit Connect Van 2WD,1650
+2016,17,Special Purpose Vehicle 2WD,Nissan,City Express Cargo Van,1700
+2016,3,Subcompact Cars,Toyota,iA,1200
+2016,3,Subcompact Cars,Ford Motor Company,Fiesta SFE FWD,1250
+2016,7,Small Station Wagons,Honda,FIT,1250
+2016,7,Small Station Wagons,Honda,FIT,1300
+2016,12,Standard Pick-up Trucks 2WD,Ford Motor Company,F150 2WD,2050
+2016,12,Standard Pick-up Trucks 2WD,FCA US LLC,1500 HFE 4X2,2100
+2016,8,Midsize Station Wagons,Toyota,PRIUS v,1050
+2016,8,Midsize Station Wagons,Nissan,MURANO Hybrid FWD,1550
+2016,18,Special Purpose Vehicle 4WD,Ford Motor Company,MKT LIVERY AWD,2500
+2016,20,Special Purpose Vehicle minivan 2WD,Nissan,QUEST,1950
+2016,20,Special Purpose Vehicle minivan 2WD,Honda,ODYSSEY 2WD,2050
+2016,31,Small SUV 4WD,Toyota,RAV4 HYBRID AWD,1350
+2016,31,Small SUV 4WD,Toyota,NX 300h AWD,1400
+2016,10,Small Pick-up Trucks 2WD,General Motors,COLORADO 2WD,1800
+2016,10,Small Pick-up Trucks 2WD,General Motors,CANYON 2WD,2000
+2016,5,Midsize Cars,Toyota,PRIUS Eco,800
+2016,5,Midsize Cars,Toyota,PRIUS,850
+2016,2,Minicompact Cars,FCA US LLC,500,1450
+2016,2,Minicompact Cars,BMW,Mini Cooper Convertible,1600

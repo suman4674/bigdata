@@ -1,0 +1,45 @@
+mfyear,carLineClassCode,carLineClassDesc,mfrName,carline,fuelCost
+2015,13,Standard Pick-up Trucks 4WD,FCA US LLC,1500 4X4,2550
+2015,13,Standard Pick-up Trucks 4WD,Ford Motor Company,F150 PICKUP 4WD,2600
+2015,19,Special Purpose Vehicle cab chassis,General Motors,C15 SIERRA 2WD CAB CHASSIS,2900
+2015,19,Special Purpose Vehicle cab chassis,General Motors,K15 SIERRA 4WD CAB CHASSIS,2900
+2015,15,Vans  Passenger Type,Ford Motor Company,Transit T150 Wagon,3300
+2015,15,Vans  Passenger Type,General Motors,G2500 SAVANA 2WD PASS MDPV,3000
+2015,4,Compact Cars,Honda,CIVIC,950
+2015,4,Compact Cars,Toyota,PRIUS c,1050
+2015,21,Special Purpose Vehicle  minivan 4WD,Toyota,SIENNA AWD,2750
+2015,11,Small Pick-up Trucks 4WD,General Motors,COLORADO 4WD,2500
+2015,11,Small Pick-up Trucks 4WD,General Motors,CANYON 4WD,2500
+2015,30,Small SUV 2WD,Toyota,NX 300h,1600
+2015,30,Small SUV 2WD,General Motors,TRAX,1800
+2015,32,Standard SUV 2WD,Nissan,QX60 HYBRID FWD,2000
+2015,32,Standard SUV 2WD,Nissan,PATHFINDER Hybrid 2WD,2000
+2015,14,Vans  Cargo Types,General Motors,G2500 EXPRESS CONV 2WD CARGOMDPV,4400
+2015,14,Vans  Cargo Types,General Motors,G2500 EXPRESS CONV 2WD CARGOMDPV,4400
+2015,33,Standard SUV 4WD,Toyota,HIGHLANDER HYBRID AWD,1900
+2015,33,Standard SUV 4WD,Toyota,HIGHLANDER HYBRID AWD LE Plus,1900
+2015,1,Two Seaters,Honda,CR-Z,1400
+2015,1,Two Seaters,Ferrari,F12,1550
+2015,6,Large Cars,Ford Motor Company,C-MAX Hybrid FWD,1300
+2015,6,Large Cars,Hyundai,Sonata,1650
+2015,17,Special Purpose Vehicle 2WD,Nissan,City Express Cargo Van,2100
+2015,17,Special Purpose Vehicle 2WD,Ford Motor Company,Transit Connect Van 2WD,2100
+2015,3,Subcompact Cars,Ford Motor Company,Fiesta SFE FWD,1450
+2015,3,Subcompact Cars,General Motors,SPARK,1550
+2015,7,Small Station Wagons,Honda,FIT,1450
+2015,7,Small Station Wagons,Honda,FIT,1500
+2015,12,Standard Pick-up Trucks 2WD,FCA US LLC,1500 HFE 4X2,2350
+2015,12,Standard Pick-up Trucks 2WD,Ford Motor Company,F150 PICKUP 2WD,2400
+2015,8,Midsize Station Wagons,Toyota,PRIUS v,1250
+2015,8,Midsize Station Wagons,Mercedes-Benz,GLA 250,1950
+2015,18,Special Purpose Vehicle 4WD,Ford Motor Company,MKT LIVERY AWD,2750
+2015,20,Special Purpose Vehicle  minivan 2WD,MAZDA,MAZDA 5,2200
+2015,20,Special Purpose Vehicle  minivan 2WD,Nissan,QUEST,2400
+2015,31,Small SUV 4WD,Toyota,NX 300h AWD,1650
+2015,31,Small SUV 4WD,Subaru,XV CROSSTREK HYBRID,1700
+2015,10,Small Pick-up Trucks 2WD,General Motors,COLORADO 2WD,2400
+2015,10,Small Pick-up Trucks 2WD,General Motors,COLORADO 2WD,2400
+2015,5,Midsize Cars,Toyota,PRIUS,1050
+2015,5,Midsize Cars,Honda,ACCORD,1100
+2015,2,Minicompact Cars,Toyota,iQ,1400
+2015,2,Minicompact Cars,FCA US LLC,500,1700
